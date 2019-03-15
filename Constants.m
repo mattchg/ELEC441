@@ -31,7 +31,6 @@ Sml = 1e-6;  % General purpose small number
 % Geometry
 
 % Material
-rho_FR4 = 1.850; % g/cm^3
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Indices for Motor Vectors %
