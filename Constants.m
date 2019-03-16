@@ -22,6 +22,10 @@ kilo = 1e3;
 mega = 1e6;
 milsTomm = 0.0254;
 
+%USCU <=> Metric Conversion factors
+CMPerInch = 2.54;
+GramPerOz = 28.3495;
+
 Big = 1e6;   % General purpose large number
 Sml = 1e-6;  % General purpose small number
 

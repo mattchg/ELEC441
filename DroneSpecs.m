@@ -1,0 +1,1 @@
+MomentArm = 15; %cm
