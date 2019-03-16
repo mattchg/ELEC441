@@ -57,7 +57,6 @@ RotJ          = 13;
 Weight        = 14;
 OuterDiam     = 15;
 Length        = 16;
-DynFric      = 17;
 
 
 
