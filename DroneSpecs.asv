@@ -1,1 +1,2 @@
-MomentAr
+MomentArm = 10; %cm
+BatteryMass = 200;

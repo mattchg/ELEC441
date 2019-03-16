@@ -27,12 +27,17 @@
             
             PropDiameter = PropDiameter*CMPerInch*centi;
             PropWeight = GramPerOz*milli;
+            
             DroneMomentArm = MomentArm*centi;
+            DroneBatteryMass = BatteryMass*milli;
+            DroneArea = Area; %cm^3
+            DroneThickness = Thickness;%cm
+            
             
 %% Calculations      
     % From Linearization
         linearizedFrictionCoef = 3.1153e-05;
-        linearizedThrustGain = 0.0027;
+        linearizedThrustGain = 86.87;
 
     % Propeller Inertia Calculation           
         PropellerJ = (1/2)*PropWeight*(PropDiameter/2)^2;
@@ -47,10 +52,15 @@
         M1_dyn_fric = M1(TorqueK)*M1(NoLoadCurr)/M1(NoLoadSpd);
         M2_dyn_fric = M2(TorqueK)*M2(NoLoadCurr)/M2(NoLoadSpd);
         M3_dyn_fric = M3(TorqueK)*M3(NoLoadCurr)/M3(NoLoadSpd);
-    %Equilibrium voltage
-        Vnom = 11;
+    
+     %Equilibrium voltage
+        Vnom = 11.35;
 
 %% Moment of Inertia for Mechanical System
+        DroneVolume = DroneArea*DroneThickness;
+        DroneMass = DroneVolume*rhoABS;
+        DroneJx = (1/12)*DroneMass*(3*(DroneMomentArm)^2+DroneThickness^2)*milli*(centi^2);
+        DroneJy = DroneJx;
             
 %%     Transfer Functions      
         %% Motor/Mechanical Dynamics Model
@@ -96,7 +106,24 @@
             ELEC3_DEN = [M3(TermL),M3(TermR)];
             ELEC3 = tf(ELEC3_NUM,ELEC3_DEN);
             
-
+            % Amplifier:         
+            %                
+            %                 
+            % Voltage/Voltage Transfer Function
             
+            
+            % Drone Rotational Dynamics:    
+            %                    1
+            %                ---------
+            %                 Js^2 + Bs
+            % Torque/Position Transfer Function
+            
+            MECHX_N = 1;
+            MECHX_D = [DroneJx,0,0];
+            MECHX = tf(MECHX_N,MECHX_D);
+
+            MECHY_N = 1;
+            MECHY_D = [DroneJy,0,0];
+            MECHY = tf(MECHY_N,MECHY_D);
             
             

@@ -35,6 +35,7 @@ Sml = 1e-6;  % General purpose small number
 % Geometry
 
 % Material
+rhoABS = 0.90; %gcm^3
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Indices for Motor Vectors %
