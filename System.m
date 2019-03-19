@@ -30,14 +30,14 @@
             
             DroneMomentArm = MomentArm*centi;
             DroneBatteryMass = BatteryMass*milli;
-            DroneArea = Area; %cm^3
+            DroneArea = Area; %cm^2
             DroneThickness = Thickness;%cm
             
             
 %% Calculations      
     % From Linearization
         linearizedFrictionCoef = 3.1153e-05;
-        linearizedThrustGain = 86.87;
+        linearizedThrustGain = 0.0027;
 
     % Propeller Inertia Calculation           
         PropellerJ = (1/2)*PropWeight*(PropDiameter/2)^2;
@@ -58,8 +58,8 @@
 
 %% Moment of Inertia for Mechanical System
         DroneVolume = DroneArea*DroneThickness;
-        DroneMass = DroneVolume*rhoABS;
-        DroneJx = (1/12)*DroneMass*(3*(DroneMomentArm)^2+DroneThickness^2)*milli*(centi^2);
+        DroneMass = DroneVolume*rhoABS*milli;
+        DroneJx = (1/12)*(DroneMass+M0(Weight)+ M1(Weight) + M2(Weight)+ M3(Weight))*(3*(DroneMomentArm)^2+DroneThickness^2)*(centi^2);
         DroneJy = DroneJx;
             
 %%     Transfer Functions      

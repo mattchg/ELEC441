@@ -8,25 +8,25 @@ RadSec_SS = 14000*RadPSecPerRPM;
 
 cftool(PropTestSpeed,PropTestTorque) 
 %%
-linearizedFrictionCoef = 2*fittedmodel.p1*(RadSec_SS) + fittedmodel.p2;
+LinearizedFrictionSlope = 2*fittedmodel.p1*(RadSec_SS) + fittedmodel.p2;
+f_SS = fittedmodel(RadSec_SS);
+
+L = f_SS + LinearizedFrictionSlope*(w - RadSec_SS);
 
 nL = fittedmodel(w);
-B = fittedmodel(RadSec_SS)-(linearizedFrictionCoef*RadSec_SS);
-L = linearizedFrictionCoef*w + B;
 
 plot(w/RadPSecPerRPM,nL)
 hold on
 plot(w/RadPSecPerRPM,L)
 
 %% Speed/Thrust Gain
-%cftool(PropTestSpeed,PropTestThrust) 
+cftool(PropTestSpeed,PropTestThrust) 
 %%
-linearizedThrustGain = 2*fittedmodel.p1*(RadSec_SS) + fittedmodel.p2;
+linearizedThrustSlope = 2*fittedmodel.p1*(RadSec_SS) + fittedmodel.p2;
+f_SS = fittedmodel(RadSec_SS);
+L = f_SS + linearizedThrustSlope*(w - RadSec_SS);
 
 nL = fittedmodel(w);
-ThrustIntercept = fittedmodel(RadSec_SS)-(linearizedThrustGain*RadSec_SS);
-L = linearizedThrustGain*w + ThrustIntercept;
-
 plot(w/RadPSecPerRPM,nL/9.81)
 hold on
 plot(w/RadPSecPerRPM,L/9.81)
