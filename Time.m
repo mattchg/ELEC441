@@ -1,3 +1,5 @@
-t = 0:0.2:10;
-noise_test1= 11+ randn(size(t))*sqrt(2);
-noise_test0 = 11+ randn(size(t))*sqrt(2);
+t = 0:0.01:1;
+
+step = ones(length(t),4);
+%step(0,:) = 0;
+

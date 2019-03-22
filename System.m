@@ -28,16 +28,23 @@
             PropDiameter = PropDiameter*CMPerInch*centi;
             PropWeight = GramPerOz*milli;
             
-            DroneMomentArm = MomentArm*centi;
+            tau_cd = tau_cd*micro;
+            
+            DroneMomentArm = MomentArm*milli;
             DroneBatteryMass = BatteryMass*milli;
             DroneArea = Area; %cm^2
             DroneThickness = Thickness;%cm
             
             
 %% Calculations      
+    RPM = 14000;
+    RadSec_SS = RPM*RadPSecPerRPM;
+    
     % From Linearization
-        linearizedFrictionCoef = 3.1153e-05;
-        linearizedThrustGain = 0.0027;
+        linearizedFrictionCoef = 1.057e-08;
+        lift_coef = 9.209e-07;
+        linearizedThrustSlope = 2*lift_coef*RadSec_SS;
+        Thrust_SS =  1.9794;
 
     % Propeller Inertia Calculation           
         PropellerJ = (1/2)*PropWeight*(PropDiameter/2)^2;
@@ -106,11 +113,14 @@
             ELEC3_DEN = [M3(TermL),M3(TermR)];
             ELEC3 = tf(ELEC3_NUM,ELEC3_DEN);
             
-            % Amplifier:         
-            %                
-            %                 
+            % Current Driver:         
+            %         (1-s(tau/2))
+            %         ------------
+            %         (1+s(tau/2))        
             % Voltage/Voltage Transfer Function
             
+                delay_numerator = [2/(tau_cd)];
+                delay_denominator = [-2/(tau_cd)];
             
             % Drone Rotational Dynamics:    
             %                    1

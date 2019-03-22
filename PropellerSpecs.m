@@ -1,5 +1,8 @@
 PropDiameter = 4; %Inches
 PropWeight = 0.14; %Oz
+tau_cd = 20; %microseconds
+
+
 
 PropTestSpeed = [
 0
