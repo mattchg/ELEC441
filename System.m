@@ -29,6 +29,7 @@
             PropWeight = GramPerOz*milli;
             
             tau_cd = tau_cd*micro;
+            CDLIM = current_limit;
             
             DroneMomentArm = MomentArm*milli;
             DroneBatteryMass = BatteryMass*milli;
