@@ -41,7 +41,7 @@
     RadSec_SS = RPM*RadPSecPerRPM;
     
     % From Linearization
-        linearizedFrictionCoef = 1.057e-08;
+        linearizedFrictionCoef = 1.057e-08*RadSec_SS;
         lift_coef = 9.209e-07;
         linearizedThrustSlope = 2*lift_coef*RadSec_SS;
         Thrust_SS =  1.9794;
@@ -61,7 +61,7 @@
         M3_dyn_fric = M3(TorqueK)*M3(NoLoadCurr)/M3(NoLoadSpd);
     
      %Equilibrium voltage
-        Vnom = 11.35;
+        Vnom = 10.80;
 
 %% Moment of Inertia for Mechanical System
         DroneVolume = DroneArea*DroneThickness;
