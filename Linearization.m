@@ -4,7 +4,6 @@ RPM = 14000;
 RadSec_SS = RPM*RadPSecPerRPM;
 w = (RPM-3000:100:RPM+3000)*RadPSecPerRPM;
 
-
 %% Friction Coefficient
 %fittedmodel(x) = p1*x^2 + p2*x + p3;
 cftool(PropTestSpeed,PropTestTorque) 
@@ -20,10 +19,6 @@ LinearizedB = fittedmodel1(RadSec_SS)/RadSec_SS;
 
 hold on
 plot(w/RadPSecPerRPM,L)
-
-
-
-
 
 
 %% Speed/Thrust Gain

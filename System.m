@@ -5,6 +5,7 @@
             Time;
             DroneSpecs;
             
+            
 %%  Unit Conversions (Kg,m,s,N,A,V,Rad/Sec,Heneries,Ohms)             
             % Values at Nominal Voltage
             M0(NomV) = M0(NomV);        
@@ -40,6 +41,7 @@
 %% Calculations      
     RPM = 14000;
     RadSec_SS = RPM*RadPSecPerRPM;
+    I_nom = 3.41;
     
     % From Linearization
         linearizedFrictionCoef = 1.057e-08*RadSec_SS;
@@ -122,6 +124,7 @@
             
                 delay_numerator = [2/(tau_cd)];
                 delay_denominator = [-2/(tau_cd)];
+              
             
             % Drone Rotational Dynamics:    
             %                    1
